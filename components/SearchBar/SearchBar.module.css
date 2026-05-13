@@ -1,0 +1,220 @@
+.searchForm {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  max-width: 600px;
+}
+
+.searchForm.compact {
+  flex-direction: row;
+  max-width: 100%;
+  align-items: stretch;
+}
+
+.searchContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  background: var(--color-card);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-4) var(--space-5);
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.searchContainer:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: var(--shadow-focus), var(--shadow-md);
+  transform: scale(1.01);
+}
+
+.searchContainer.loading {
+  opacity: 0.85;
+}
+
+.searchIcon {
+  flex-shrink: 0;
+  color: var(--color-text-tertiary);
+  margin-right: var(--space-3);
+  transition: color var(--transition-base);
+}
+
+.searchContainer:focus-within .searchIcon {
+  color: var(--color-primary);
+}
+
+.searchInput {
+  flex: 1;
+  font-size: var(--font-size-lg);
+  color: var(--color-text);
+  background: transparent;
+  min-width: 0;
+}
+
+.searchInput::placeholder {
+  color: var(--color-text-tertiary);
+}
+
+.searchInput:disabled {
+  opacity: 0.6;
+}
+
+.clearButton {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  color: var(--color-text-tertiary);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast);
+}
+
+.clearButton:hover {
+  background: var(--color-bg-alt);
+  color: var(--color-text-secondary);
+}
+
+.searchButton {
+  padding: var(--space-3) var(--space-6);
+  background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+  color: #fff;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-2xl);
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.compact .searchButton {
+  padding: var(--space-4) var(--space-6);
+}
+
+.searchButton:hover:not(:disabled) {
+  background: linear-gradient(135deg, #2563EB, #7C3AED);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+.searchButton:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.searchButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Loading spinner */
+.spinner {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin-left: var(--space-2);
+}
+
+.spinnerDot {
+  width: 6px;
+  height: 6px;
+  background: var(--color-primary);
+  border-radius: var(--radius-full);
+  animation: bounce 1.2s infinite ease-in-out;
+}
+
+.spinnerDot:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.spinnerDot:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0%, 80%, 100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== Responsive ===== */
+
+/* Tablet (768px) */
+@media (max-width: 768px) {
+  .searchContainer {
+    padding: var(--space-3) var(--space-4);
+  }
+
+  .searchInput {
+    font-size: var(--font-size-base);
+  }
+
+  .compact .searchButton {
+    padding: var(--space-3) var(--space-5);
+  }
+}
+
+/* Mobile large (640px) */
+@media (max-width: 640px) {
+  .searchForm.compact {
+    flex-direction: column;
+  }
+
+  .searchContainer {
+    padding: var(--space-3) var(--space-3);
+  }
+
+  .searchIcon {
+    margin-right: var(--space-2);
+  }
+}
+
+/* Mobile (414px) */
+@media (max-width: 414px) {
+  .searchContainer {
+    padding: var(--space-2) var(--space-3);
+    border-radius: var(--radius-xl);
+  }
+
+  .searchInput {
+    font-size: var(--font-size-sm);
+  }
+
+  .searchButton {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+  }
+
+  .searchContainer:focus-within {
+    transform: none;
+  }
+}
+
+/* Mobile mini (320px) */
+@media (max-width: 320px) {
+  .searchIcon {
+    width: 16px;
+    height: 16px;
+  }
+
+  .searchButton {
+    padding: var(--space-2) var(--space-3);
+    font-size: var(--font-size-xs);
+  }
+}

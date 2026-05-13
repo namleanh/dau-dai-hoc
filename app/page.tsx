@@ -1,66 +1,52 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
 
-export default function Home() {
+import { useCallback } from 'react';
+import { useRouter } from 'next/navigation';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import QuickChips from '@/components/QuickChips/QuickChips';
+import { addSearchHistory } from '@/lib/history';
+import styles from './page.module.css';
+
+export default function HomePage() {
+  const router = useRouter();
+
+  const handleSearch = useCallback(
+    (query: string) => {
+      addSearchHistory(query);
+      router.push(`/results?q=${encodeURIComponent(query)}`);
+    },
+    [router]
+  );
+
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className={styles.main}>
+      <div className={styles.content}>
+        {/* Animated graduation cap */}
+        <div className={styles.iconContainer}>
+          <span className={styles.icon}>🎓</span>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Title & tagline */}
+        <h1 className={styles.title}>
+          Đậu Đại Học
+        </h1>
+        <p className={styles.tagline}>
+          Tra cứu điểm chuẩn, ngành học & cơ hội nghề nghiệp
+        </p>
+
+        {/* Search bar */}
+        <div className={styles.searchWrapper}>
+          <SearchBar onSearch={handleSearch} autoFocus />
         </div>
-      </main>
-    </div>
+
+        {/* Quick suggestion chips */}
+        <QuickChips onSelect={handleSearch} />
+      </div>
+
+      {/* Subtle footer */}
+      <footer className={styles.footer}>
+        <p>Dữ liệu được tổng hợp từ các nguồn uy tín bằng AI</p>
+      </footer>
+    </main>
   );
 }
