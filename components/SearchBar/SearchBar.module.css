@@ -55,6 +55,7 @@
   color: var(--color-text);
   background: transparent;
   min-width: 0;
+  touch-action: manipulation;
 }
 
 .searchInput::placeholder {
@@ -193,7 +194,7 @@
   }
 
   .searchInput {
-    font-size: var(--font-size-sm);
+    font-size: 16px; /* Must be at least 16px to prevent iOS Safari auto-zoom */
   }
 
   .searchButton {
