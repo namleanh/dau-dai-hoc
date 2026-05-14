@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, FormEvent } from 'react';
+import { useState, useEffect, useCallback, FormEvent } from 'react';
 import styles from './SearchBar.module.css';
 
 interface SearchBarProps {
@@ -19,6 +19,10 @@ export default function SearchBar({
   compact = false,
 }: SearchBarProps) {
   const [value, setValue] = useState(initialValue);
+
+  useEffect(() => {
+    setValue(initialValue);
+  }, [initialValue]);
 
   const handleSubmit = useCallback(
     (e: FormEvent) => {
