@@ -23,8 +23,11 @@ const INCLUDE_DOMAINS = [
   'tuoitre.vn',
   'thanhnien.vn',
   'vietnamnet.vn',
+  'dantri.com.vn',
   'tuyensinh247.com',
   'diemthi.com.vn',
+  'trangedu.com',
+  'hocmai.vn',
   'moet.gov.vn',
 ];
 

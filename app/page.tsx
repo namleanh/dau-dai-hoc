@@ -46,6 +46,7 @@ export default function HomePage() {
       {/* Subtle footer */}
       <footer className={styles.footer}>
         <p>Dữ liệu được tổng hợp từ các nguồn uy tín bằng AI</p>
+        <p className={styles.disclaimer}>* Kết quả mang tính chất tham khảo. Vui lòng đối chiếu với website chính thức của trường Đại học để có thông tin chính xác nhất.</p>
       </footer>
     </main>
   );
